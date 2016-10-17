@@ -1,6 +1,7 @@
 package what.is.security.config;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
@@ -15,5 +16,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.and()
 		.formLogin();
 	}
+
+	@Override
+	protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
+		auth.inMemoryAuthentication().withUser("id").password("pwd").roles("USER");
+	}
+
+
 
 }
